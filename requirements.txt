@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+py-eureka-client==0.11.13
+sqlalchemy
+pydantic
