@@ -16,10 +16,18 @@ public class ApiGetWayApplication {
 	@Bean
 	public RouteLocator gatewayRoutes (RouteLocatorBuilder builder) {
 		return builder.routes()
-
-				.route("universite", r -> r.path("/universite/**")
-						.uri("lb://UNIVERSITE"))
-
+				.route("property", r -> r.path("/property/**")
+						.uri("lb://property"))
+				.route("user", r -> r.path("/user/**")
+						.uri("lb://user"))
+				.route("blog", r -> r.path("/blog/**")
+						.uri("lb://blog"))
+				.route("service", r -> r.path("/service/**")
+						.uri("lb://service"))
+				.route("transaction", r -> r.path("/transaction/**")
+						.uri("lb://transaction"))
+				.route("incident", r -> r.path("/incident/**")
+						.uri("lb://incident"))
 
 				.build();
 	}
