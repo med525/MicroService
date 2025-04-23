@@ -1,0 +1,81 @@
+<nav class="h-screen w-64 bg-white border-r shadow-lg flex flex-col justify-between px-4 py-6">
+    <!-- Admin Info -->
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-lg font-semibold text-blue-700">Welcome</h2>
+          <p class="text-sm text-gray-700 font-medium truncate">{{ adminName }}</p>
+        </div>
+        <button
+          (click)="logout()"
+          class="text-xs text-red-600 border border-red-500 px-2 py-1 rounded-md hover:bg-red-50 transition duration-200"
+        >
+          Logout
+        </button>
+      </div>
+  
+      <!-- Navigation Links -->
+      <ul class="space-y-2 text-sm font-medium">
+        <li>
+          <a
+            routerLink="/back/property"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            🏠 Property Management
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/back/users"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            👤 User Management
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/back/incidents"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            🚨 Incident Management
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/back/transactions"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            💸 Transaction Management
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/back/blog"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            📝 Blog Management
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/back/services"
+            routerLinkActive="bg-blue-100 text-blue-700 font-semibold"
+            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition"
+          >
+            💼 Service Management
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="text-center text-xs text-gray-400 mt-10">
+      &copy; 2025 <span class="text-blue-600 font-semibold">Maghrebia Insurance</span>
+    </footer>
+  </nav>
+  

@@ -1,0 +1,56 @@
+<nav class="bg-white border-b shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+  
+        <!-- Logo -->
+        <a routerLink="/" class="text-2xl font-extrabold text-blue-600 tracking-wide hover:text-blue-800 transition">
+          Maghrebia
+        </a>
+  
+        <!-- Toggle (mobile) -->
+        <div class="md:hidden">
+          <button (click)="toggleNavbar()" class="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2 rounded-md">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+  
+        <!-- Menu items -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a routerLink="/" class="text-gray-700 font-medium hover:text-blue-600 transition">Home</a>
+          <a routerLink="/about" class="text-gray-700 font-medium hover:text-blue-600 transition">About</a>
+          <a routerLink="/services" class="text-gray-700 font-medium hover:text-blue-600 transition">Services</a>
+          <a routerLink="/contact" class="text-gray-700 font-medium hover:text-blue-600 transition">Contact</a>
+        
+          <ng-container *ngIf="auth.isLoggedIn(); else showLogin">
+            <button (click)="logout()" class="ml-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition duration-200 shadow-sm">
+              Logout
+            </button>
+          </ng-container>
+        
+          <ng-template #showLogin>
+            <button (click)="goToLogin()" class="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-200 shadow-sm">
+              Login
+            </button>
+          </ng-template>
+        </div>
+        
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div *ngIf="isOpen" class="md:hidden bg-white border-t px-4 pb-4 space-y-3">
+      <a routerLink="/" class="block text-gray-700 font-medium hover:text-blue-600 transition">Home</a>
+      <a routerLink="/about" class="block text-gray-700 font-medium hover:text-blue-600 transition">About</a>
+      <a routerLink="/services" class="block text-gray-700 font-medium hover:text-blue-600 transition">Services</a>
+      <a routerLink="/contact" class="block text-gray-700 font-medium hover:text-blue-600 transition">Contact</a>
+      <button (click)="goToLogin()" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">
+        Login
+      </button>
+      
+      
+    </div>
+  </nav>
+  

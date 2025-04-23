@@ -1,0 +1,18 @@
+<div class="flex h-screen overflow-hidden bg-gray-100">
+    <!-- Sidebar -->
+    <app-sidenav class="w-64 flex-shrink-0 bg-white shadow-md z-20"></app-sidenav>
+  
+    <!-- Main content area -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Topbar (optional) -->
+      <header class="bg-white shadow p-4">
+        <h1 class="text-lg font-semibold text-gray-800">Maghrebia Insurance Back Office</h1>
+      </header>
+  
+      <!-- Router Outlet -->
+      <main class="flex-1 overflow-y-auto p-6">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+  
