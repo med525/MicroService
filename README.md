@@ -102,3 +102,4 @@ Spring Boot, Node.js, Eureka, Gateway, MongoDB, H2
 Keycloak for security
 
 Angular for a reactive frontend
+![491013084_1008962554665618_7629897148805290678_n](https://github.com/user-attachments/assets/4e342476-83df-47b6-a9fb-f4c8cceecf77)
