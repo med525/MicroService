@@ -16,20 +16,23 @@ public class ApiGetWayApplication {
 	@Bean
 	public RouteLocator gatewayRoutes (RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("property-service", r -> r.path("/property/**")
-						.uri("lb://property-service"))
-				.route("user", r -> r.path("/user/**")
-						.uri("lb://user"))
 				.route("blog", r -> r.path("/blog/**")
 						.uri("lb://blog"))
 				.route("service", r -> r.path("/service/**")
 						.uri("lb://service"))
 				.route("transaction", r -> r.path("/transaction/**")
 						.uri("lb://transaction"))
-				.route("incident", r -> r.path("/incident/**")
-						.uri("lb://incident"))
+
+				.route("incident-service", r -> r.path("/incidents/**")
+						.uri("lb://incident-service")) // ✅ must match spring.application.name
+
+
+
+
 				.route("user-service", r -> r.path("/users/**")
 						.uri("lb://user-service"))
+				.route("property-service", r -> r.path("/properties/**")
+						.uri("lb://property-service"))
 
 				.build();
 	}

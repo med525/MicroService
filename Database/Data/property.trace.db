@@ -1,0 +1,12 @@
+2025-04-24 10:33:06.526081+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table if exists property add column [*]value float(53)"; expected "identifier"; SQL statement:
+alter table if exists property add column value float(53) [42001-224]
+2025-04-24 10:33:48.604312+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into property (description,estimated_value,latitude,location,longitude,owner_id,title,type,[*]value,id) values (?,?,?,?,?,?,?,?,?,default)"; expected "identifier"; SQL statement:
+insert into property (description,estimated_value,latitude,location,longitude,owner_id,title,type,value,id) values (?,?,?,?,?,?,?,?,?,default) [42001-224]
+2025-04-24 10:35:21.434503+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "alter table if exists property add column [*]value float(53)"; expected "identifier"; SQL statement:
+alter table if exists property add column value float(53) [42001-224]
+2025-04-24 10:38:16.866241+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select p1_0.id,p1_0.description,p1_0.latitude,p1_0.location,p1_0.longitude,p1_0.owner_id,p1_0.title,p1_0.type,p1_0.[*]value from property p1_0 where p1_0.owner_id=?"; expected "identifier"; SQL statement:
+select p1_0.id,p1_0.description,p1_0.latitude,p1_0.location,p1_0.longitude,p1_0.owner_id,p1_0.title,p1_0.type,p1_0.value from property p1_0 where p1_0.owner_id=? [42001-224]

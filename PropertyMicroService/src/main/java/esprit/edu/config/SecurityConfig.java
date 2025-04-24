@@ -14,12 +14,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/h2/**", "/h2-console/**","/users/login", "/users/signup").permitAll()
+                        .requestMatchers("/h2/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/properties/**").authenticated()
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for H2 and dev
-                .headers(headers -> headers.frameOptions().disable()) // H2 console
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()));
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for H2 and testing purposes
+                .headers(headers -> headers.frameOptions().disable()) // Enable H2 console in browser
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults())); // ✅ Use default JWT parser without custom converter
+
         return http.build();
     }
 }
