@@ -11,7 +11,7 @@ export class RoleGuard implements CanActivate {
   
     if (roles.includes('admin')) {
       this.router.navigate(['/back']);
-      return false; // block frontend route
+      return false; 
     }
   
     if (roles.includes('user')) {

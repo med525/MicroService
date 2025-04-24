@@ -1,0 +1,118 @@
+<div class="max-w-5xl mx-auto p-6">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">📋 My Properties</h2>
+
+  <div *ngIf="loading" class="text-blue-500 font-medium">Loading...</div>
+  <div *ngIf="errorMessage" class="text-red-600 font-semibold">{{ errorMessage }}</div>
+
+  <table *ngIf="properties.length > 0" class="w-full mt-4 table-auto border border-gray-200 shadow-sm rounded-lg">
+    <thead class="bg-gray-100 text-gray-700 text-sm">
+      <tr>
+        <th class="px-4 py-2 border">ID</th>
+        <th class="px-4 py-2 border">Title</th>
+        <th class="px-4 py-2 border">Location</th>
+        <th class="px-4 py-2 border">Type</th>
+        <th class="px-4 py-2 border">estimatedValue</th>
+        <th class="px-4 py-2 border">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of properties" class="hover:bg-gray-50 transition">
+        <td class="px-4 py-2 border">{{ property.id }}</td>
+        <td class="px-4 py-2 border">{{ property.title }}</td>
+        <td class="px-4 py-2 border">
+          {{ property.location }}<br />
+          <a *ngIf="property.latitude && property.longitude"
+             class="text-blue-600 underline text-sm"
+             [href]="'https://www.google.com/maps?q=' + property.latitude + ',' + property.longitude"
+             target="_blank" rel="noopener noreferrer">
+            📍 View on Map
+          </a>
+        </td>
+        <td class="px-4 py-2 border">{{ property.type }}</td>
+        <td class="px-4 py-2 border">{{ property.estimatedValue | currency }}</td>
+        <td class="px-4 py-2 border space-x-2">
+          <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded"
+                  (click)="editProperty(property)">
+            ✏️ Edit
+          </button>
+          <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded"
+                  (click)="deleteProperty(property.id)">
+            🗑️ Delete
+          </button>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded"
+                  (click)="viewIncidents(property.id)">
+            📝 Incidents
+          </button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && properties.length === 0" class="text-gray-600 mt-4">
+    No properties found.
+  </div>
+
+  <hr class="my-6 border-t border-gray-300" />
+
+  <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ formData.id ? 'Update' : 'Add' }} Property</h3>
+
+  <form (ngSubmit)="onSubmit()" #propertyForm="ngForm" class="space-y-4">
+    <input type="hidden" [(ngModel)]="formData.id" name="id" />
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Title:</label>
+      <input class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+             [(ngModel)]="formData.title" name="title" required />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Location:</label>
+      <input class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+             [(ngModel)]="formData.location" name="location" required />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Type:</label>
+      <input class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+             [(ngModel)]="formData.type" name="type" required />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">estimatedValue:</label>
+      <input type="number" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+             [(ngModel)]="formData.estimatedValue" name="estimatedValue" required />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Latitude:</label>
+        <input type="number" [(ngModel)]="formData.latitude" name="latitude"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+               (change)="updateMapMarker()" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Longitude:</label>
+        <input type="number" [(ngModel)]="formData.longitude" name="longitude"
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+               (change)="updateMapMarker()" />
+      </div>
+    </div>
+
+    <div leaflet
+         [leafletOptions]="mapOptions"
+         (leafletMapReady)="onMapReady($event)"
+         class="mt-4 border rounded-md"
+         style="height: 400px;">
+    </div>
+
+    <p class="text-sm text-gray-500 mt-2">
+      🌍 Click on the map or drag the marker to update location.
+    </p>
+
+    <button type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-2">
+      {{ formData.id ? 'Update' : 'Add' }} Property
+    </button>
+  </form>
+</div>

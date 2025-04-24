@@ -33,7 +33,8 @@ export class AuthService {
       console.error('Failed to parse token:', error);
       this.roles = [];
     }
-  }  
+  }
+  
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
